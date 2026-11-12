@@ -26,7 +26,9 @@ namespace DashMasters
             if (waterMat == null)
             {
                 MeshRenderer mr = GetComponent<MeshRenderer>();
-                if (mr != null) waterMat = mr.material;
+                // SetColors is called by the editor level builder. Accessing material
+                // here creates a transient instance while editing and produces a leak warning.
+                if (mr != null) waterMat = mr.sharedMaterial;
             }
             if (waterMat != null)
             {
