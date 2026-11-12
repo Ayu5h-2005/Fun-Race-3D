@@ -135,6 +135,10 @@ namespace DashMasters
                 return;
             }
 
+            // Podium placement and respawn temporarily disable the CharacterController.
+            // Do not issue Move calls until it has been re-enabled.
+            if (controller == null || !controller.enabled) return;
+
             if (GameManager.Instance != null && GameManager.Instance.CurrentState != GameState.Racing)
             {
                 ApplyGravityOnly();
